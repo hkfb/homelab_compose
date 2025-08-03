@@ -1,0 +1,48 @@
+#version: '3.8'
+
+services:
+  homeassistant:
+    container_name: ${HA_CONTAINER_NAME}
+    image: ${HA_IMAGE}
+    restart: unless-stopped
+    volumes:
+      - ${HA_CONFIG_PATH}:/config
+      - /etc/localtime:/etc/localtime:ro
+      #- ${HA_MEDIA_VOLUME}
+      #- ${HA_DBUS_VOLUME}
+    ports:
+      - ${HA_PORT}
+    networks:
+      - homeassistant
+      - ollama_docker_compose_ollama_network
+    environment:
+      - DBUS_SYSTEM_BUS_ADDRESS=unix:path=/run/dbus/system_bus_socket
+
+  wyoming-whisper:
+    container_name: wyoming-whisper
+    image: rhasspy/wyoming-whisper
+    command: --model medium --language no
+    restart: unless-stopped
+    volumes:
+      - ${WYOMING_WHISPER_DATA_PATH}:/data
+    networks:
+      - homeassistant
+
+  esphome:
+    container_name: esphome
+    image: esphome/esphome:latest
+    volumes:
+      - ${ESPHOME_CONFIG_PATH}:/config
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 6052:6052
+    #devices:
+      #- ${ESPHOME_USB_DEVICE}
+    restart: unless-stopped
+
+networks:
+  homeassistant:
+    driver: ${NETWORK_DRIVER}
+
+  ollama_docker_compose_ollama_network:
+    external: true

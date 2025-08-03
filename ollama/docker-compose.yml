@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  ollama:
+    image: docker.io/ollama/ollama:rocm
+    container_name: ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    environment:
+      - HSA_OVERRIDE_GFX_VERSION=9.0.0       # Vega 64
+      - HCC_AMDGPU_TARGET=gfx900
+    volumes:
+      - ollama_data:${OLLAMA_DATA_DIR:-/var/lib/ollama}
+    devices:
+      - /dev/kfd
+      - /dev/dri
+    group_add:
+      - video
+    security_opt:
+      - seccomp=unconfined
+    privileged: true
+    networks:
+      - ollama_network
+
+volumes:
+  ollama_data:
+
+networks:
+  ollama_network:
+    driver: bridge
