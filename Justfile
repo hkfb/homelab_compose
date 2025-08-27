@@ -1,3 +1,6 @@
+n8n-up:
+    bash -c 'cd n8n && set -a; . .env; set +a && docker-compose -f ../docker-compose.common.yml -f docker-compose.yml up --detach'
+
 home-assistant-up:
-    cd home_assistant && docker-compose -f docker-compose.yml -f docker-compose.custom.yml up --detach
+    bash -c 'cd home_assistant && set -a; . .env; set +a && docker-compose -f ../docker-compose.common.yml -f docker-compose.yml -f docker-compose.custom.yml up --detach'
 
