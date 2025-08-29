@@ -20,10 +20,12 @@ services:
       - n8n_data:/home/node/.n8n
       #env_file:
       #- n8n/.env
+    networks:
+      - homelab
 
 volumes:
   n8n_data:
 
-networks:
-  homelab:
-    external: true
+    #networks:
+    #homelab:
+    #external: true

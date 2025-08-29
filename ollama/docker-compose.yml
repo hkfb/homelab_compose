@@ -1,4 +1,4 @@
-version: '3.8'
+#version: '3.8'
 
 services:
   ollama:
@@ -21,11 +21,11 @@ services:
       - seccomp=unconfined
     privileged: true
     networks:
-      - ollama_network
+      - homelab
 
 volumes:
   ollama_data:
 
-networks:
-  ollama_network:
-    driver: bridge
+    #networks:
+    #ollama_network:
+    #driver: bridge
