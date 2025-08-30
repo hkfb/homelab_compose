@@ -1,0 +1,24 @@
+# This file is used to override settings in docker-compose.yml. It is useful for settings
+# that are specific to your local environment, such as volume mounts and device mappings.
+# It must be placed in the same directory as docker-compose.yml in order to take effect.
+
+# Override network settings
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 172.25.0.0/24
+
+services:
+  homeassistant:
+    # Add volume mounts and device mappings
+    volumes:
+      - /home/user/Pictures:/media/photo/:ro
+    devices:
+      - /dev/serial/by-id/usb-...-port0:/dev/ttyUSB0
+
+  # Use host Redis and Postgres services
+  n8n:
+    depends_on: !reset []
+  n8n-uv:
+    depends_on: !reset []

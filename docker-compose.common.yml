@@ -1,3 +1,4 @@
 networks:
-  homelab:
+  default:
+    name: homelab
     driver: bridge

@@ -1,31 +1,5 @@
-services:
-  n8n:
-    image: n8nio/n8n:latest
-    restart: unless-stopped
-    ports:
-      - "${N8N_PORT}:5678"
-    environment:
-      - DB_TYPE=postgresdb
-      - DB_POSTGRESDB_HOST=${DB_HOST}
-      - DB_POSTGRESDB_PORT=${DB_PORT}
-      - DB_POSTGRESDB_DATABASE=${DB_NAME}
-      - DB_POSTGRESDB_USER=${DB_USER}
-      - DB_POSTGRESDB_PASSWORD=${DB_PASSWORD}
-      - N8N_BASIC_AUTH_ACTIVE=${BASIC_AUTH_ACTIVE}
-      - N8N_BASIC_AUTH_USER=${BASIC_AUTH_USER}
-      - N8N_BASIC_AUTH_PASSWORD=${BASIC_AUTH_PASSWORD}
-      - N8N_SECURE_COOKIE=${N8N_SECURE_COOKIE}
-      - GENERIC_TIMEZONE=${TIMEZONE}
-    volumes:
-      - n8n_data:/home/node/.n8n
-      #env_file:
-      #- n8n/.env
-    networks:
-      - homelab
+include:
+  - https://github.com/hkfb/llm-lab.git#subdir:postgres/docker-compose.yml
+  - https://github.com/hkfb/llm-lab.git#subdir:redis/docker-compose.yml
+  - https://github.com/hkfb/llm-lab.git#subdir:n8n/docker-compose.yml
 
-volumes:
-  n8n_data:
-
-    #networks:
-    #homelab:
-    #external: true
