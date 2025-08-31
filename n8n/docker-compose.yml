@@ -1,5 +1,5 @@
 include:
-  - https://github.com/hkfb/llm-lab.git#subdir:postgres/docker-compose.yml
-  - https://github.com/hkfb/llm-lab.git#subdir:redis/docker-compose.yml
-  - https://github.com/hkfb/llm-lab.git#subdir:n8n/docker-compose.yml
+  - https://github.com/hkfb/llm-lab.git#4d547ca8170b30f39d5d1556d4beedb09326bf6c:postgres/docker-compose.yml
+  - https://github.com/hkfb/llm-lab.git#4d547ca8170b30f39d5d1556d4beedb09326bf6c:redis/docker-compose.yml
+  - https://github.com/hkfb/llm-lab.git#4d547ca8170b30f39d5d1556d4beedb09326bf6c:n8n/docker-compose.yml
 
