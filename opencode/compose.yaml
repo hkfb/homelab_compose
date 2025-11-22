@@ -1,0 +1,3 @@
+include:
+  - https://github.com/hkfb/llm-lab.git#6eabd54f8b41b1be99c59306b952f886cf562295:opencode/compose.yml
+

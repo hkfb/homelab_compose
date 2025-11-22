@@ -1,5 +1,6 @@
 include:
-  - ./docker-compose.common.yml
+  - ./compose.common.yaml
   - ./home_assistant/docker-compose.yml
   - ./n8n/docker-compose.yml
   - ./ollama/docker-compose.yml
+  - ./opencode/compose.yaml
