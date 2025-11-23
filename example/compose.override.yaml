@@ -22,3 +22,8 @@ services:
     depends_on: !reset []
   n8n-uv:
     depends_on: !reset []
+
+  opencode:
+    volumes:
+      - /home/user/opencode_workspace:/home/user/opencode_workspace:rw
+      - /home/user/.config/opencode/opencode.json:/home/opencode/.config/opencode/opencode.json:rw
