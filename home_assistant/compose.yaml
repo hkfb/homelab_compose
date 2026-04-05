@@ -1,20 +1,17 @@
 services:
   homeassistant:
-    image: ${HA_IMAGE:-ghcr.io/home-assistant/home-assistant:stable}
+    image: ghcr.io/home-assistant/home-assistant:stable
     restart: unless-stopped
     volumes:
-      - ${HA_CONFIG_PATH}:/config
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - ${HA_PORT}
+      - 127.0.0.1:8123:8123
     user: root
 
   wyoming-whisper:
     image: rhasspy/wyoming-whisper
     command: --model medium --language no
     restart: unless-stopped
-    volumes:
-      - ${WYOMING_WHISPER_DATA_PATH}:/data
     ports:
       - 10300:10300
 
@@ -28,7 +25,6 @@ services:
   esphome:
     image: esphome/esphome:latest
     volumes:
-      - ${ESPHOME_CONFIG_PATH}:/config
       - /etc/localtime:/etc/localtime:ro
     ports:
       - 6052:6052
