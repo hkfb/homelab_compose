@@ -1,5 +1,5 @@
 include:
-  - https://github.com/hkfb/llm-lab.git#658e042e9eb4d6d3236e32b93000011b82d3490a:redis/compose.yaml
+  - https://github.com/hkfb/llm-lab.git#658e042e9eb4d6d3236e32b93000011b82d3490a:redis/docker-compose.yml
   - https://github.com/hkfb/llm-lab.git#658e042e9eb4d6d3236e32b93000011b82d3490a:open-webui/compose.yaml
 
 
