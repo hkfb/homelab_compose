@@ -2,5 +2,5 @@ include:
   - ./compose.common.yaml
   - ./home_assistant/compose.yaml
   - ./n8n/docker-compose.yml
-  - ./ollama/docker-compose.yml
+  - ./ollama/compose.yaml
   - ./opencode/compose.yaml
