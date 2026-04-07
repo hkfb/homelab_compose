@@ -4,3 +4,4 @@ include:
   - ./n8n/docker-compose.yml
   - ./ollama/compose.yaml
   - ./opencode/compose.yaml
+  - ./open-webui/compose.yaml
