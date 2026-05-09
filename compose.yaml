@@ -4,3 +4,4 @@ include:
   - ./n8n/docker-compose.yml
   - ./ollama/docker-compose.yml
   - ./opencode/compose.yaml
+  - ./frigate/compose.yaml

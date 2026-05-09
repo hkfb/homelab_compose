@@ -1,6 +1,7 @@
-# This file is used to override settings in docker-compose.yml. It is useful for settings
-# that are specific to your local environment, such as volume mounts and device mappings.
-# It must be placed in the same directory as docker-compose.yml in order to take effect.
+# This file is used to override settings in compose.yaml. It is useful for
+# settings that are specific to your local environment, such as volume mounts
+# and device mappings. It must be placed in the same directory as
+# compose.yaml in order to take effect.
 
 # Override network settings
 networks:
@@ -27,3 +28,16 @@ services:
     volumes:
       - /home/user/opencode_workspace:/home/user/opencode_workspace:rw
       - /home/user/.config/opencode/opencode.json:/home/opencode/.config/opencode/opencode.json:rw
+
+  frigate:
+    # Local bind mounts for config and media (overrides named volume)
+    volumes:
+      - /home/user/frigate/config:/config
+      - /home/user/frigate/media:/media/frigate
+
+    # PCIe Coral TPU
+    devices:
+      - /dev/apex_0:/dev/apex_0
+      - /dev/apex_1:/dev/apex_1
+      - /dev/apex_2:/dev/apex_2
+      - /dev/apex_3:/dev/apex_3
