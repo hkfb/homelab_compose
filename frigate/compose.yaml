@@ -3,7 +3,7 @@ services:
     build: .
     restart: unless-stopped
     privileged: true
-    shm_size: 128mb
+    shm_size: 256mb
     volumes:
       - frigate_config:/config
       - frigate_media:/media/frigate
