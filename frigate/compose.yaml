@@ -1,10 +1,11 @@
 services:
   frigate:
-    image: ghcr.io/blakeblackshear/frigate:stable
+    build: .
     restart: unless-stopped
     privileged: true
     shm_size: 128mb
     volumes:
+      - frigate_config:/config
       - frigate_media:/media/frigate
       - /etc/localtime:/etc/localtime:ro
       - type: tmpfs
@@ -17,4 +18,5 @@ services:
       - CAP_PERFMON
 
 volumes:
+  frigate_config:
   frigate_media:
