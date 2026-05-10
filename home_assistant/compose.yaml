@@ -1,29 +1,30 @@
 services:
   homeassistant:
-    container_name: ${HA_CONTAINER_NAME}
-    image: ${HA_IMAGE}
+    image: ghcr.io/home-assistant/home-assistant:stable
     restart: unless-stopped
     volumes:
-      - ${HA_CONFIG_PATH}:/config
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - ${HA_PORT}
-    environment:
-      - DBUS_SYSTEM_BUS_ADDRESS=unix:path=/run/dbus/system_bus_socket
+      - 127.0.0.1:8123:8123
+    user: root
 
   wyoming-whisper:
-    container_name: wyoming-whisper
     image: rhasspy/wyoming-whisper
     command: --model medium --language no
     restart: unless-stopped
-    volumes:
-      - ${WYOMING_WHISPER_DATA_PATH}:/data
+    ports:
+      - 10300:10300
+
+  wyoming-openwakeword:
+    image: rhasspy/wyoming-openwakeword
+    command: --preload-model 'alexa'
+    restart: unless-stopped
+    ports:
+      - 10400:10400
 
   esphome:
-    container_name: esphome
     image: esphome/esphome:latest
     volumes:
-      - ${ESPHOME_CONFIG_PATH}:/config
       - /etc/localtime:/etc/localtime:ro
     ports:
       - 6052:6052
